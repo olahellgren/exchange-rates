@@ -5,20 +5,18 @@ import java.time.LocalDate;
 import java.util.Currency;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
-@Service
 public class ECBDataFetcher {
 
-  private String urlBase = "https://api.exchangeratesapi.io";
-  private UriTemplate getRatesTemplate = new UriTemplate(urlBase + "/{date}?base={base}");
+  private UriTemplate getRatesTemplate;
   private final RestTemplate restTemplate;
 
   @Autowired
-  public ECBDataFetcher(RestTemplate restTemplate) {
+  public ECBDataFetcher(String baseUrl, RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
+    this.getRatesTemplate = new UriTemplate(baseUrl + "/{date}?base={base}");
   }
 
 
