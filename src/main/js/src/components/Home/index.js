@@ -23,16 +23,22 @@ const Home = () => {
 
   return (
     <Container maxWidth="md">
-      <Grid container alignItems="center" justify="center">
-        <Typography align="center" variant="h1">
-          Exchange Rates
-        </Typography>
-        <CurrencyPicker onChange={handleOnChange} value={ratesValue} />
-        <Typography variant="h2">
-          {`${Number(rates.base.value).toFixed(2)} ${
-            rates.base.currency
-          } is ${Number(rates.to.value).toFixed(2)} ${rates.to.currency}`}
-        </Typography>
+      <Grid container alignItems="center" justify="center" spacing={4}>
+        <Grid item>
+          <Typography align="center" variant="h1">
+            Exchange Rates
+          </Typography>
+        </Grid>
+        <Grid item>
+          <CurrencyPicker onChange={handleOnChange} value={ratesValue} />
+        </Grid>
+        <Grid item>
+          <Typography variant="h2">
+            {`${Number(rates.base.value).toFixed(2)} ${
+              rates.base.currency
+            } is ${Number(rates.to.value).toFixed(2)} ${rates.to.currency}`}
+          </Typography>
+        </Grid>
       </Grid>
     </Container>
   );

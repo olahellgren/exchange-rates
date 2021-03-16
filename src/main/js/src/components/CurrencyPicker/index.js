@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, TextField, Typography } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 
 const CurrencyPicker = ({ onChange, value }) => {
   const handleChange = useCallback(
     ({ target: { value: inputValue, name } }) => {
       onChange({
-        from: name === 'from' ? inputValue : value.from,
-        to: name === 'to' ? inputValue : value.to,
+        from: name === 'from' ? inputValue.toUpperCase() : value.from,
+        to: name === 'to' ? inputValue.toUpperCase() : value.to,
       });
     },
     [onChange, value]
@@ -24,11 +24,6 @@ const CurrencyPicker = ({ onChange, value }) => {
           onChange={handleChange}
           value={value.from}
         />
-      </Grid>
-      <Grid item>
-        <Typography align="center" variant="h4">
-          =
-        </Typography>
       </Grid>
       <Grid item>
         <TextField
