@@ -1,13 +1,13 @@
-import React, { useCallback } from "react";
-import PropTypes from "prop-types";
-import { Grid, TextField, Typography } from "@material-ui/core";
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { Grid, TextField, Typography } from '@material-ui/core';
 
-const Rates = ({ onChange, value }) => {
+const CurrencyPicker = ({ onChange, value }) => {
   const handleChange = useCallback(
     ({ target: { value: inputValue, name } }) => {
       onChange({
-        from: name === "from" ? inputValue : value.from,
-        to: name === "to" ? inputValue : value.to,
+        from: name === 'from' ? inputValue : value.from,
+        to: name === 'to' ? inputValue : value.to,
       });
     },
     [onChange, value]
@@ -17,7 +17,7 @@ const Rates = ({ onChange, value }) => {
     <Grid container justify="center" alignItems="center" spacing={4}>
       <Grid item>
         <TextField
-          inputProps={{ "data-testid": "from" }}
+          inputProps={{ 'data-testid': 'from' }}
           label="From"
           name="from"
           variant="outlined"
@@ -32,7 +32,7 @@ const Rates = ({ onChange, value }) => {
       </Grid>
       <Grid item>
         <TextField
-          inputProps={{ "data-testid": "to" }}
+          inputProps={{ 'data-testid': 'to' }}
           label="To"
           name="to"
           variant="outlined"
@@ -44,8 +44,8 @@ const Rates = ({ onChange, value }) => {
   );
 };
 
-Rates.propTypes = {
+CurrencyPicker.propTypes = {
   value: PropTypes.shape({ from: PropTypes.string, to: PropTypes.string }),
 };
 
-export default Rates;
+export default CurrencyPicker;

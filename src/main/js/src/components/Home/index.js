@@ -1,14 +1,14 @@
 import { Container, Grid, Typography } from '@material-ui/core';
 import { useEffect, useState } from 'react';
-import Rates from '../Rates';
+import CurrencyPicker from '../CurrencyPicker';
 import { useDebounce } from '../../utlis/useDebounce';
-import {
-  ExchangeRateProvider,
-  useExchangeRates,
-} from '../../context/exchangeRateContext';
+import { useExchangeRates } from '../../context/exchangeRateContext';
 
 const Home = () => {
-  const { exchangeRateState, actions } = useExchangeRates();
+  const {
+    exchangeRateState: { rates },
+    actions,
+  } = useExchangeRates();
   const [ratesValue, setRatesValue] = useState({ from: 'EUR', to: 'SEK' });
   const debouncedFromValue = useDebounce(ratesValue.from);
   const debouncedToValue = useDebounce(ratesValue.to);
@@ -27,8 +27,12 @@ const Home = () => {
         <Typography align="center" variant="h1">
           Exchange Rates
         </Typography>
-        <Rates onChange={handleOnChange} value={ratesValue} />
-        <Typography>result</Typography>
+        <CurrencyPicker onChange={handleOnChange} value={ratesValue} />
+        <Typography variant="h2">
+          {`${Number(rates.base.value).toFixed(2)} ${
+            rates.base.currency
+          } is ${Number(rates.to.value).toFixed(2)} ${rates.to.currency}`}
+        </Typography>
       </Grid>
     </Container>
   );
