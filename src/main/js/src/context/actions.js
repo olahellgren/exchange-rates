@@ -5,8 +5,10 @@ export const createActions = (dispatch) => {
     fetchRates: async (from, to) => {
       try {
         const result = await fetch(`/api/exchange-rates/${from}/${to}`);
-        const rates = await result.json();
-        dispatch({ type: SET_RATES, rates });
+        if (result.status === 200) {
+          const rates = await result.json();
+          dispatch({ type: SET_RATES, rates });
+        }
       } catch (error) {
         console.error(error);
       }
